@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <div class="login-box">
+    <h1>Login</h1>
+    <form onsubmit="return validateForm()">
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter Username" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter Password" minlength="6" required>
+      <input type="submit" value="Login" id="submit-btn">
+    </form>
+    <p id="error-message"></p>
+  </div>
+
+  <script>
+    // Move submit button on hover
+    const submitBtn = document.getElementById("submit-btn");
+    submitBtn.addEventListener("mouseover", () => {
+      submitBtn.style.transform = "translateX(20px)";
+    });
+
+    submitBtn.addEventListener("mouseout", () => {
+      submitBtn.style.transform = "translateX(0px)";
+    });
+
+    // Form validation
+    function validateForm() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "" || password === "") {
+        document.getElementById("error-message").innerHTML = "Please fill all fields.";
+        return false;
+      }
+
+      if (password.length < 6) {
+        document.getElementById("error-message").innerHTML = "Password must be at least 6 characters long.";
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+</body>
+
+</html>
